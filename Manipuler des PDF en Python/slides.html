@@ -1,0 +1,279 @@
+<style>
+  section[id] h2 + p {
+    font-size: 0.8em;
+    margin-top: -3rem;
+  }
+</style>
+<section>
+  <h1>Manipuler des PDF en Python</h1>
+  <p><a href="https://courtbouillon.org/">CourtBouillon</a> − Python AFPy − 25 novembre 2021</p>
+</section>
+<section>
+  <p>Salut ! Je m’appelle <a href="https://yabz.fr/index.en.html">Guillaume Ayoub</a>.</p>
+  <p>Je fais partie de <a href="https://courtbouillon.org/">CourtBouillon</a>, des gens authentiques qui font pousser du code libre.</p>
+  <p>Notre projet principal s’appelle <a href="https://weasyprint.org/">WeasyPrint</a>. Il transforme du HTML et du CSS en documents imprimables.</p>
+</section>
+<section>
+  <ol>
+    <li><a style="text-decoration: none" href="#/format">Comment fonctionne un PDF</a></li>
+    <li><a style="text-decoration: none" href="#/extraire">Extraire les informations d’un PDF</a></li>
+    <li><a style="text-decoration: none" href="#/afficher">Afficher un PDF</a></li>
+    <li><a style="text-decoration: none" href="#/modifier">Modifier un PDF</a></li>
+    <li><a style="text-decoration: none" href="#/creer">Créer un PDF</a></li>
+  </ol>
+</section>
+<section>
+  <p>Nous parlerons majoritairement des outils écrits en Python.</p>
+  <p>Un très grand nombre de bibliothèques existent, mais leurs niveaux de qualité et de maintenance sont très aléatoires.</p>
+  <p>Nous ne verrons pas tout !</p>
+</section>
+<section id="format">
+  <h2>Comment fonctionne un PDF</h2>
+  <p>Rassurez-vous, on ne va pas s’infliger les 750 pages de spécification…</p>
+</section>
+<section>
+  <h3>Un format « ouvert »</h3>
+  <p>PDF est un format créé en 1992 par Adobe.</p>
+  <p>D’abord propriétaire, il devient officiellement ouvert en 2008 avec la publication d’un standard ISO accessible librement et l’attribution de licences gratuites pour les brevets d’Adobe relatifs au standard.</p>
+  <p>La version 2.0 du format est débarrassée de ses éléments propriétaires. Il est désormais la propriété de l’ISO : n’importe qui peut participer à son élaboration, mais il est payant.</p>
+</section>
+<section>
+  <h3>Un format « lisible »</h3>
+  <p>On peut ouvrir un PDF avec un éditeur de texte.</p>
+  <p>Un PDF contient une liste d’objets, représentant les différents contenus, et une table des objets à la fin, donnant la position de chacun des objets dans le fichier.</p>
+  <p>Les objets contiennent souvent du texte, mais ils peuvent être compressés (et donc illisibles).</p>
+</section>
+<section>
+  <h3>Un format « hackable »</h3>
+  <p>Modifier un objet est complexe, mais totalement possible.</p>
+  <p>Le plus simple reste d’ajouter de nouveaux objets et de les ajouter à la fin, avec une nouvelle table.</p>
+</section>
+<section>
+  <h3>Début de fichier</h3>
+  <pre>
+
+%PDF-1.7
+
+1 0 obj
+<<
+/Type /Pages
+/Kids [ 6 0 R 8 0 R … ]
+/Count 5
+>>
+endobj
+
+2 0 obj
+<<
+…
+  </pre>
+</section>
+<section>
+  <h3>Fin de fichier</h3>
+  <pre>
+
+xref
+0 21
+0000000000 65535 f 
+0000000015 00000 n 
+…
+0000011672 00000 n 
+trailer
+<<
+/Size 21
+/Root 3 0 R
+>>
+startxref
+11709
+%%EOF
+  </pre>
+</section>
+<section id="extraire">
+  <h2>Extraire des informations<br/>d’un PDF</h2>
+  <p>Dites-moi ce qu’il y a là-dedans !</p>
+</section>
+<section>
+  <h3>Récupérer de nombreuses informations</h3>
+  <p>On peut vouloir récupérer les informations d’un PDF, que ce soit les métadonnées ou le contenu : texte, images…</p>
+</section>
+<section>
+  <h3>Récupérer le texte</h3>
+  <pre><code class="python">
+from pdfminer.high_level import extract_text
+
+text = extract_text('document.pdf')
+print(text)
+  </code></pre>
+</section>
+<section>
+  <h3>Récupérer des métadonnées</h3>
+  <pre><code class="python">
+from PyPDF2 import PdfFileReader
+
+with open('document.pdf', 'rb') as fd:
+    pdf = PdfFileReader(fd)
+    information = pdf.getDocumentInfo()
+
+print(information.author)
+print(information.producer)
+print(information.title)
+  </code></pre>
+</section>
+<section id="afficher">
+  <h2>Afficher un PDF</h2>
+  <p>Sur un écran, ou sur du papier si l’imprimante le veut bien…</p>
+</section>
+<section>
+  <h3>C’est compliqué</h3>
+  <p>Rendre un document à l’écran ou sur une page de papier est très difficile. La norme PDF fait environ 750 pages, et il faut idéalement tout gérer.</p>
+  <p>Il n’existe pas d’outil en Python pour faire cela. Les implémentations libres connues sont Ghostscript et Poppler (basé sur xpdf). Il existe des <em>bindings</em> Python.</p>
+</section>
+<section>
+  <h3>Transformer un PDF en image</h3>
+  <pre><code class="python">
+from poppler import PageRenderer, load_from_file
+
+pdf_document = load_from_file('document.pdf')
+page_1 = pdf_document.create_page(0)
+renderer = PageRenderer()
+image = renderer.render_page(page_1)
+image.save('page_1.png', 'png')
+  </code></pre>
+</section>
+<section>
+  <h3>Afficher un PDF sur l’écran</h3>
+  <pre><code class="python">
+from os import system
+
+system('gs -sDevice=x11 -dBATCH document.pdf')
+  </code></pre>
+  <p>Oui, il existe un <em>binding</em> Python pour Ghostscript, mais il est vraiment « limité ».</p>
+</section>
+<section id="modifier">
+  <h2>Modifier un PDF</h2>
+  <p>On coupe, on tourne, on réorganise…</p>
+</section>
+<section>
+  <h3>Modifier, c’est comprendre la structure</h3>
+  <p>Certaines bibliothèques sont capables de lire le contenu d’un PDF, de fournir une interface objet Python correspondant aux objets du PDF, et de générer un nouveau PDF à partir de la structure Python.</p>
+  <p>Généralement, les objets de base de PDF ont une correspondance avec les objets Python. Il vaut mieux connaître la spécification PDF (ou lire les exemples de la bibliothèque) pour pouvoir faire ce que l’on veut.</p>
+</section>
+<section>
+  <h3>Appliquer une rotation sur les pages d’un PDF</h3>
+  <pre><code class="python">
+from pdfrw import PdfReader, PdfWriter
+
+trailer = PdfReader('document.pdf')
+for page_number in range(len(trailer.pages)):
+    trailer.pages[page_number].Rotate = 90
+
+writer = PdfWriter('document-rotate.pdf')
+writer.trailer = trailer
+writer.write()
+  </code></pre>
+</section>
+<section>
+  <h3>Fusionner deux PDF</h3>
+  <pre><code class="python">
+from PyPDF2 import PdfFileReader, PdfFileWriter
+
+pdf_writer = PdfFileWriter()
+for path in ['document_1.pdf', 'document_2.pdf']:
+    pdf_reader = PdfFileReader(path)
+    for page in range(pdf_reader.getNumPages()):
+        pdf_writer.addPage(pdf_reader.getPage(page))
+
+with open('document_merge.pdf', 'wb') as fd:
+    pdf_writer.write(fd)
+  </code></pre>
+</section>
+<section id="creer">
+  <h2>Créer un PDF</h2>
+  <p>Il est l’heure de réveiller l’artiste en moi !</p>
+</section>
+<section>
+  <h3>On a beaucoup de cas d’usage différents</h3>
+  <p>Créer un document nécessite l’utilisation d’outils très variés selon le but précis de la création et les contraintes que l’on a.</p>
+  <p>Il est important de se poser les bonnes questions et de bien réfléchir afin de déterminer comment procéder.</p>
+</section>
+<section>
+  <h3>Créer un PDF manuellement</h3>
+  <p>C’est adapté lorsque l’on connaît bien la spécification ou que l’on veut une interface minimaliste.</p>
+  <p>Attention : ça pique !</p>
+</section>
+<section>
+  <h3>Dessiner un rectangle</h3>
+  <pre><code class="python">
+import pydyf
+from pathlib import Path
+
+document = pydyf.PDF()
+draw = pydyf.Stream()
+draw.rectangle(100, 100, 50, 70)
+draw.stroke()
+document.add_page(pydyf.Dictionary({
+    'Type': '/Page',
+    'Parent': document.pages.reference,
+    'Contents': draw.reference,
+    'MediaBox': pydyf.Array([0, 0, 200, 200])}))
+
+with open('document.pdf', 'wb') as fd:
+    document.write(fd)
+  </code></pre>
+</section>
+<section>
+  <h3>Créer un PDF avec une interface haut niveau</h3>
+  <p>C’est adapté lorsque l’on veut avoir beaucoup de liberté, sans avoir à étudier la spécification.</p>
+  <p>On peut faire la logique de mise en page en pur Python, mais on est lié à une bibliothèque.</p>
+  <p>C’est une solution simple lorsque l’on a une mise en page simple. Lorsque la mise en page est compliquée, c’est… compliqué. Vraiment très compliqué.</p>
+</section>
+<section>
+  <h3>Écrire du texte avec borb</h3>
+  <pre><code class="python">
+from borb.pdf.canvas.layout.page_layout.multi_column_layout import SingleColumnLayout
+from borb.pdf.canvas.layout.text.paragraph import Paragraph
+from borb.pdf.document import Document
+from borb.pdf.page.page import Page
+from borb.pdf.pdf import PDF
+
+pdf = Document()
+page = Page()
+pdf.append_page(page)
+layout = SingleColumnLayout(page)
+layout.add(Paragraph('Hello World!'))
+with open('document.pdf'), 'wb') as fd:
+    PDF.dumps(fd, pdf)
+  </code></pre>
+</section>
+<section>
+  <h3>Écrire du texte avec ReportLab</h3>
+  <pre><code class="python">
+from reportlab.pdfgen.canvas import Canvas
+
+canvas = Canvas('document.pdf')
+canvas.drawString(100, 100, 'Hello World!')
+canvas.showPage()
+canvas.save()
+  </code></pre>
+</section>
+<section>
+  <h3>Créer un PDF à partir de HTML et CSS</h3>
+  <p>C’est adapté lorsque l’on a de la mise en page complexe, et une bonne connaissance de HTML et CSS.</p>
+  <p>On n’est pas lié à un outil.</p>
+  <p>Le contenu est stockable dans un format stable, facile à mettre en ligne et à convertir.</p>
+</section>
+<section>
+  <h3>Écrire du texte avec WeasyPrint</h3>
+  <pre><code class="python">
+from weasyprint import HTML
+
+html = HTML(string='''
+    &lt;style>h1 { color: red }&lt;/style>
+    &lt;h1>The title&lt;/h1>
+    &lt;p>Content goes here&lt;/p>''')
+html.write_pdf('document.pdf')
+  </code></pre>
+</section>
+<section>
+  <p>C’est le moment de poser des questions !</p>
+  <p style="font-size: 0.8em">On peut voir des exemples, on peut discuter des autres outils, on peut parler de vos problématiques…</p>
+</section>
