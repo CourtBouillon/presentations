@@ -1,0 +1,503 @@
+<section>
+  <h1>L’enfer du packaging</h1>
+  <p>Rencontres Python Lyon, le 18 mai 2022</p>
+</section>
+
+<section><h2>Témoignages</h2></section>
+<section>
+  <h3>Écrire du code</h3>
+  <div>
+    <span class="face">👦🏽</span>
+    <figure class="testimony">
+      <blockquote>
+        <p>
+          J’adore écrire du code en Python 🐍. C’est simple, lisible, efficace.
+          Je trouve en toute objectivité que c’est le meilleur langage de
+          programmation du monde 🌍.
+        </p>
+      </blockquote>
+      <figcaption>Houssem, jeune développeur</figcaption>
+    </figure>
+  </div>
+</section>
+<section>
+  <h3>Écrire des tests</h3>
+  <div>
+    <span class="face">👱🏻‍♀️</span>
+    <figure class="testimony">
+      <blockquote>
+        <p>
+          J’ai pleine confiance dans les outils 🧰 que j’utilise pour mes
+          tests 👍🏻. Pytest me fournit des fonctionnalités très appréciables
+          pour mettre en place mes suites de tests, pierres angulaires de mon
+          intégration continue 🦾.
+        </p>
+      </blockquote>
+      <figcaption>Ada, directrice de projets informatiques</figcaption>
+    </figure>
+  </div>
+</section>
+<section>
+  <h3>Faire de la documentation</h3>
+  <div>
+    <span class="face">👴🏻</span>
+    <figure class="testimony">
+      <blockquote>
+        <p>
+          J’ai acquis une formidable expérience dans l’écriture de
+          documentation 📔. Python, grâce à certains de ses paquets comme
+          Sphinx, me donne de quoi faire de superbes pages qui aident nos
+          utilisateurs à prendre du plaisir avec nos logiciels 💻.
+        </p>
+      </blockquote>
+      <figcaption>Jean-Michel, architecte logiciel cheveronné</figcaption>
+    </figure>
+  </div>
+</section>
+<section>
+  <h3>Faire des paquets</h3>
+  <div>
+    <span class="face">💀</span>
+    <figure class="testimony">
+      <blockquote>
+        <p>
+          Il y a 113 ans, j’ai commencé à lire la documentation officielle sur
+          les paquets. J’ai survolé en quelques dizaines d’années le code de
+          <code>distutils</code> avant de me rendre compte qu’il allait être
+          déprécié 😭. J’ai étudié 2 398 solutions différentes sur
+          StackOverflow qui m’ont proposé 731 outils pour créer mes paquets.
+          L’an prochain, je me mets à Rust ⚙️.
+        </p>
+      </blockquote>
+      <figcaption>Gérard, ancien magicien de la gestion de projets</figcaption>
+    </figure>
+  </div>
+</section>
+<section>
+  <h3>Trouver des solutions simples</h3>
+  <div>
+    <span class="face">👽</span>
+    <figure class="testimony">
+      <blockquote>
+        <p>
+          Votre planète est étrange 🪐. Vous avez un langage de programmation
+          qui prône la simplicité, cependant vos outils de packaging sont
+          incroyablement complexes. C’est nul, non ? Vous voulez aller sur
+          Mars, commencez par avoir des outils corrects pour vos paquets 📦.
+        </p>
+      </blockquote>
+      <figcaption>Wendie, constructrice de zorglubs sur la planète OL69</figcaption>
+    </figure>
+  </div>
+</section>
+<section>
+  <h3>Faire des conférences</h3>
+  <div>
+    <span class="face">🧔🏽</span>
+    <figure class="testimony">
+      <blockquote>
+        <p>
+          Salut 👋🏽 ! J’aime bien développer du code libre au sein de
+          <a href="https://www.courtbouillon.org/">CourtBouillon</a>, j’aime
+          bien accompagner des gens sympas avec
+          <a href="https://www.stella.coop/">Stella</a>. J’aime bien les
+          navigateurs, les encodages, les dates, manger 🍲 et boire 🥂.
+        </p>
+        <p>
+          Et j’aime bien faire des paquets 🎁.
+        </p>
+      </blockquote>
+      <figcaption>Guillaume, présentateur bavard</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section><h2>Juste une mise au point</h2></section>
+<section>
+  <h3>De quoi parle-t-on ?</h3>
+  <p>Dans cette présentation, on parle :</p>
+  <ul>
+    <li>de l’architecture générale des paquets Python,</li>
+    <li>de la création de paquets,</li>
+    <li>de l’installation de paquets,</li>
+    <li>de certaines spécifications associées à ces sujets,</li>
+    <li>de certains outils associés à ces sujets.</li>
+  </ul>
+  <p>C’est déjà bien assez long comme ça ⌚.</p>
+</section>
+<section>
+  <h3>De quoi ne parle-t-on pas tout de suite ?</h3>
+  <p>On parlera peut-être plus tard, autour d’un verre 🥛 :</p>
+  <ul>
+    <li>de ce qu’il faut utiliser pour les environnements virtuels,</li>
+    <li>de ce qu’il faut utiliser pour gérer ses dépendances,</li>
+    <li>de TOML, de reStructuredText, de Python 2,</li>
+    <li>d’intégration continue, de reproductibilité, de graphes de dépendances,</li>
+    <li>de HTML, de CSS, de SVG, de PDF,</li>
+    <li>de l’état politique de la gauche, de la saison de l’Olympique Lyonnais ⚽.</li>
+  </ul>
+</section>
+<section>
+  <h3>De quoi ne parlera-t-on jamais ?</h3>
+  <p>S’il vous plaît, arrêtez-moi si je me lance sur :</p>
+  <ul>
+    <li>sur certains trolls classiques 🧌,</li>
+    <li>sur certains créateurs de certains projets,</li>
+    <li>sur les mainteneurs de certains paquets de certaines distributions Linux 🐧.</li>
+  </ul>
+</section>
+<section>
+  <h3>Quiz</h3>
+  <p>Pourquoi en est-on là ?</p>
+  <ol class="quiz">
+    <li>L’équipe de développement de Python est stupide et incompétente.</li>
+    <li>Les personnes qui créent les outils de packaging sont sadiques.</li>
+    <li>Le problème est plus compliqué qu’il n’y paraît.</li>
+    <li>La réponse D.</li>
+  </ol>
+  <p style="font-size: 0.7em">
+    (Vous pouvez répondre en tapotant sur un terminal imaginaire dans votre
+    main, des caméras télépathiques à base de NFT mettront automagiquement vos
+    réponses sur la Blockchain™.)
+  </p>
+</section>
+<section>
+  <h3>Réponse au quiz</h3>
+  <p>Pourquoi en est-on là ?</p>
+  <ol class="quiz answered">
+    <li>L’équipe de développement de Python est stupide et incompétente.</li>
+    <li>Les personnes qui créent les outils de packaging sont sadiques.</li>
+    <li class="good-answer">Le problème est plus compliqué qu’il n’y paraît.</li>
+    <li>La réponse D.</li>
+  </ol>
+</section>
+<section>
+  <h3>C’est un problème facile à résoudre</h3>
+  <p>On veut juste partager et installer du code.</p>
+  <p>C’est quand même pas compliqué !</p>
+  <p>(Regardez <a href="https://doc.rust-lang.org/cargo/getting-started/first-steps.html">ce que fait Rust</a>.)</p>
+</section>
+<section>
+  <h3>C’est un problème difficile à résoudre</h3>
+  <p>
+    On veut juste partager et installer du code.
+  </p>
+  <p style="font-size: 0.7em">
+    On veut que les modules s’installent facilement, et qu’ils installent leurs
+    dépendances. On veut une gestion de versions intelligente 🧠 mais simple,
+    qui résolve les conflits toute seule 🤯, mais qu’on puisse forcer dans des
+    cas particuliers.
+  </p>
+  <p style="font-size: 0.5em">
+    On veut qu’ils soient partagés publiquement et accessibles sur un dépôt
+    centralisé, mais qu’ils fonctionnent également avec du code gardé
+    secret 🔒, sur des serveurs privés. Attention, ça marche avec le même
+    installeur, avec les mêmes API, hein ! D’ailleurs, on peut avoir du code
+    compilé dedans, parce que Python c’est trop lent 🐢. Et que ça fonctionne
+    avec des versions différentes de Python, sur des OS différents. Sur du
+    matériel différent aussi 🖥️, bien sûr. Forcément, on inclut des binaires
+    pré-compilés, mais on veut aussi que ça se compile à la volée si besoin.
+  </p>
+  <p style="font-size: 0.4em">
+    Je vous avais dit qu’il y avait des exécutables dedans ? Ils utilisent
+    directement des bibliothèques binaires installées sur le système, peu
+    importe le système d’exploitation ! Oui, même sur les architectures
+    gros-boutistes ! D’ailleurs, les dépendances sont calculées à la volée sur
+    la machine où le paquet est installé, c’est pratique… C’est comme quand je
+    fais des jeux 🕹, j’ai des images 🖼️ et des sons 🎵 inclus, et les shaders
+    des modèles 3D sont compilés à l’installation selon la carte graphique
+    utilisée, et recompilés à la volée si la carte change. Bien sûr, selon la
+    carte on installe les dépendances particulières nécessaires, c’est un
+    besoin basique pour moi.
+  </p>
+  <p style="font-size: 0.3em">
+    Ce qui serait vraiment bien, c’est que quand je crée mes wheels 🎡 je
+    puisse faire de la cross-compilation distribuée. Les fichiers à inclure
+    sont automatiquement ceux de mon gestionnaire de versions, d’ailleurs.
+    L’envoi du paquet sur PyPI va chercher le mot de passe chiffré sur mon
+    disque, gère tranquillou l’authentification à deux facteurs, et m’informe
+    s’il y a un problème avec les droits que j’ai sur le serveur pour ce
+    paquet. Ça me fait facilement une belle page de présentation du projet ✨,
+    avec des liens normalisés pour accéder au code, aux tickets et à la
+    documentation 📘. Attention, je veux pas faire du HTML non plus, faudrait
+    faire un truc avec du markup, ou un truc comme ça. Mais avec un peu de
+    style quand même ✏️. Et des images. Et des badges en SVG 🏷️ qui montrent le
+    taux de couverture des tests 📈, et les versions de Python supportées.
+  </p>
+  <p>C’est quand même pas compliqué.</p>
+</section>
+
+<section><h2>Raconte-nous une histoire</h2></section>
+<section>
+  <h3>Le problème est ancien</h3>
+  <p>
+    Entre la première version publique de Python et la première version
+    publique de Rust sont apparus :
+  </p>
+  <ul>
+    <li>Windows 3.1, Mac OS X et Linux ;</li>
+    <li>Subversion, Mercurial et Git ;</li>
+    <li>HTTP/1.0 et TLS, </li>
+    <li>HTML, XML, CSS et JavaScript ;</li>
+    <li>JPEG, PNG et SVG ;</li>
+    <li>Netscape, Internet Explorer, Firefox et Chrome ;</li>
+    <li>Google, Amazon et Facebook ;</li>
+    <li>le Nokia 3310 et l’iPod.</li>
+  </ul>
+  <p>
+    Ça explique bien des choses…
+  </p>
+</section>
+<section>
+  <h3>On manquait cruellement de recul</h3>
+  <p>
+    Python n’a bien sûr pas intégré d’outils pour distribuer le code dès ses
+    débuts :
+  </p>
+  <ul>
+    <li><code>distutils</code> est intégré dans la bibliothèque standard en 2000,</li>
+    <li>le <em>Python Package Index</em> (PyPI) est mis en ligne en 2003, développé et maintenu par la communauté Python,</li>
+    <li><code>setuptools</code> est annoncé en 2004, puis fusionné avec <code>distribute</code> en 2013,</li>
+    <li>la <em>Python Package Authority</em> (PyPA) est créée en 2011,</li>
+    <li>un nombre indécent d’outils, de fichiers et de PEP ont été proposés concernant l’évolution du packaging (et je ne parle pas des gens qui ne font que râler).</li>
+  </ul>
+</section>
+<section>
+  <h3>Beaucoup d’outils</h3>
+  <p>
+    Vous avez déjà entendu parler de <code>easy_install</code>, <code>pip</code>,
+    <code>poetry</code>, <code>distutils</code>, <code>setuptools</code>,
+    <code>distribute</code>, <code>flit</code>, <code>wheel</code>, <code>twine</code>,
+    et bien d’autres 🔧.
+  </p>
+</section>
+<section>
+  <h3>Beaucoup de fichiers</h3>
+  <p>
+    Vous avez déjà entendu parler de <code>setup.py</code>, <code>setup.cfg</code>,
+    <code>MANIFEST.in</code>, <code>pyproject.toml</code>, <code>requirements.txt</code>,
+    et bien d’autres 📄.
+  </p>
+</section>
+<section>
+  <h3>Beaucoup de problèmes</h3>
+  <p>
+    Le développement anarchique 🏴 a entraîné énormément de problèmes : pas de
+    source d’informations sûre pour les personnes qui débutent, énormément de
+    documentations contradictoires, beaucoup de forums obsolètes, beaucoup de
+    code obsolète, des recettes inutiles,
+    <a href="https://github.com/pallets/flask/">des dépôts illisibles</a> 🥸…
+  </p>
+</section>
+<section>
+  <h3>En conclusion</h3>
+  <p>
+    C’est le bordel, hein ?
+  </p>
+</section>
+
+<section><h2>Il nous faut un plan</h2></section>
+<section>
+  <h3>Quiz</h3>
+  <p>Que faut-il faire pour sortir de là ?</p>
+  <ol class="quiz">
+    <li><a href="https://www.youtube.com/watch?v=Oiw23yfqQy8">Casser la rétrocompatibilité</a> et tout reconstruire de zéro.</li>
+    <li>Créer <a href="https://xkcd.com/927/">un nouveau standard qui couvre tous les besoins</a>.</li>
+    <li><a href="https://fr.wikipedia.org/wiki/Fusion_dans_Dragon_Ball">Fusionner</a> les outils et les fichiers.</li>
+    <li>Construire une <a href="https://github.com/myusuf3/delorean">machine à remonter le temps</a>.</li>
+  </ol>
+</section>
+<section>
+  <h3>Réponse au quiz</h3>
+  <p>Que faut-il faire pour sortir de là ?</p>
+  <ol class="quiz answered">
+    <li><a href="https://www.youtube.com/watch?v=Oiw23yfqQy8">Casser la rétrocompatibilité</a> et tout reconstruire de zéro.</li>
+    <li class="good-answer">Créer <a href="https://xkcd.com/927/">un nouveau standard qui couvre tous les besoins</a>.</li>
+    <li><a href="https://fr.wikipedia.org/wiki/Fusion_dans_Dragon_Ball">Fusionner</a> les outils et les fichiers.</li>
+    <li>Construire une <a href="https://github.com/myusuf3/delorean">machine à remonter le temps</a>.</li>
+  </ol>
+</section>
+<section>
+  <h3>Tous les besoins, vraiment ?</h3>
+  <p>
+    En réfléchissant bien, en fait, on ne va pas couvrir tous les besoins.
+    Utiliser du code spécifique à chaque paquet pour faire des paquets, c’était
+    une mauvaise idée 👎.
+  </p>
+  <p>
+    Mais c’est parfois nécessaire 🤔.
+  </p>
+</section>
+<section>
+  <h3>Établissons une méthode d’installation</h3>
+  <ol>
+    <li>On regarde comment construire la wheel du paquet.</li>
+    <li>On installe ce qu’il faut pour construire la wheel du paquet.</li>
+    <li>On récupère récursivement les dépendances du paquet.</li>
+    <li>On construit les wheels du paquet et de ses dépendances.</li>
+    <li>On installe les wheels.</li>
+  </ol>
+</section>
+<section>
+  <h3>Écrivons des <a href="https://peps.python.org/pep-0000/"><abbr title="Python Enhancement Proposal">PEP</abbr></a></h3>
+  <dl>
+    <dt><a href="https://peps.python.org/pep-0427/">PEP 427</a></dt>
+    <dd>
+      On définit un format commun, les wheels, qui s’installe très facilement,
+      sans exécution de code spécifique.
+    </dd>
+    <dt><a href="https://peps.python.org/pep-0517/">PEP 517</a></dt>
+    <dd>
+      On établit une architecture de paquets sources qui est indépendante de
+      l’outil utilisé pour construire les paquets.
+    </dd>
+    <dt><a href="https://peps.python.org/pep-0518/">PEP 518</a></dt>
+    <dd>
+      On spécifie un nouveau fichier, <code>pyproject.toml</code>, qui indique
+      comment le paquet est construit.
+    </dd>
+    <dt><a href="https://peps.python.org/pep-0621/">PEP 621</a></dt>
+    <dd>
+      On unifie les métadonnées dans <code>pyproject.toml</code>.
+    </dd>
+    <dt><a href="https://peps.python.org/pep-0660/">PEP 660</a></dt>
+    <dd>
+      On gère les installations de paquets permettant l’édition.
+    </dd>
+  </dl>
+</section>
+<section>
+  <h3>Créons des outils de base</h3>
+  <p>
+    Adieu <code>distutils</code> 👋.
+  </p>
+  <p>
+    <code>setuptools</code> reste un standard
+    dans les faits, mais son équipe de développement a rendu obsolète
+    l’exécution directe de <code>setup.py</code>.
+  </p>
+  <p>
+    <code>wheel</code> existe depuis un moment pour apporter à
+    <code>setuptools</code> une gestion des wheels. <code>build</code> est créé
+    pour apporter une implémentation de référence pour la création de wheels.
+  </p>
+  <p>
+    L’installateur historique reste <code>pip</code>. <code>installer</code> est
+    créé pour apporter une implémentation de référence pour l’installation de
+    wheels.
+  </p>
+  <p>
+    L’implémentation de référence pour publier les paquets sur PyPI est
+    <code>twine</code>.
+  </p>
+</section>
+<section>
+  <h3>Créons des outils avancés</h3>
+  <p>
+    <code>setuptools</code> continue de supporter <code>setup.py</code> pour la
+    définition dynamique de métadonnées et l’exécution de code lors de la
+    création de paquets.
+  </p>
+  <p>
+    D’autres outils sont créés pour créer des paquets : <code>flit</code> et
+    <code>poetry</code> sont les plus connus. Ils gèrent simplement les cas
+    simples, correspondant à la grande majorité des paquets.
+  </p>
+</section>
+<section>
+  <h3>Le résultat</h3>
+  <p>
+    On peut faire désormais faire
+    <a href="https://github.com/Kozea/WeasyPrint/">quelque chose de simple</a>.
+  </p>
+  <p>
+    Ce n’est pas dans le futur. C’est maintenant.
+  </p>
+</section>
+<section>
+  <h3>Les limites, les critiques</h3>
+  <p>
+    On sera pour longtemps obligés de conserver le fonctionnement précédent à
+    cause de la rétrocompatibilité. Mais ces changements nous permettent tout
+    de même d’avancer ⏩.
+  </p>
+  <p>
+    Nous avons un nouveau fichier, qui dépend
+    <a href="https://toml.io/en/">d’un nouveau format</a>.
+  </p>
+  <p>
+    Même avec toutes ces précautions, certaines choses seront cassées 🚧.
+  </p>
+  <p>
+    Il faudra faire évoluer tous les paquets, toutes les documentations, toutes
+    les mentalités.
+  </p>
+</section>
+<section>
+  <h3>Et après ?</h3>
+  <p>
+    Beaucoup d’outils stockent ou souhaitent stocker leur configuration dans
+    <code>pyproject.toml</code>. N’hésitez pas à les encourager et à les
+    aider !
+  </p>
+  <p>
+    Tant que tout le monde suit les spécifications, il est très utile d’avoir
+    des outils variés pour des utilisations variées.
+  </p>
+  <p>
+    Il est important d’informer tout le monde de ces changements. La
+    communication est difficile 😁.
+  </p>
+  <p>
+    Il est également important d’accompagner celles et ceux qui subissent ces
+    changements, et doivent adapter leurs outils à ces évolutions.
+  </p>
+</section>
+<section>
+  <h3>Et enfin…</h3>
+  <p>
+    <div>
+      <span class="face">🧑</span>
+      <figure class="testimony">
+        <blockquote>
+          <p>
+            J’ai encore beaucoup de choses à apprendre, mais j’ai vu une
+            présentation qui m’a expliqué les bases du packaging. L’histoire
+            est chaotique 🤯, mais c’est plus facile et plus marrant qu’avant ! Ça
+            me donne confiance 😎, j’ai envie de faire des projets et de les
+            partager 🎁.
+          </p>
+        </blockquote>
+        <figcaption>Vous !</figcaption>
+      </figure>
+    </div>
+  </p>
+</section>
+
+<section>
+  <h2>Pour aller plus loin</h2>
+  <p>
+    Vous pouvez poser des questions !
+  </p>
+  <p style="font-size: 0.7em">
+    Beaucoup d’informations ont été compilées dans une suite d’articles qui existe
+    <a href="https://www.stella.coop/blog/00003-l-enfer-des-paquets-python-le-sac-de-noeuds">en français</a>
+    et
+    <a href="https://www.courtbouillon.org/blog/00011-the-python-packaging-hell-the-can-of-worms">en anglais</a>.
+    Vous y trouverez beaucoup d’informations et nombre de liens vers des PEP,
+    des vieilles discussions sur des mailing-lists, des outils géniaux ou
+    obscurs, des podcasts, des XKCD…
+  </p>
+  <p style="font-size: 0.7em">
+    Pour celles et ceux qui aiment les vidéos, des conférences ont été faites à
+    <a href="https://pyvideo.org/pycon-fr-2017/les-aventuriers-du-packaging-perdu.html">PyConFr 2017</a>
+    et
+    <a href="https://pyvideo.org/pycon-us-2021/python-packaging-demystified.html">PyConUS 2021</a>.
+    Certaines choses ont évolué depuis, mais on y apprend beaucoup de choses
+    toujours d’actualité.
+  </p>
+  <p style="font-size: 0.7em">
+    Et si vous aimez ce sujet et ce que vous avez appris, n’hésitez pas à
+    <a href="https://www.courtbouillon.org/">soutenir CourtBouillon</a> 💜 !
+  </p>
+</section>
