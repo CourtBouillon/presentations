@@ -1,0 +1,39 @@
+<section><h1>Mettre le web en page(s)</h1><p>Lucie Anglade<br></p></section>
+<section><h2>Lucie Anglade<br></h2><ul><li>Je mets le web en page(s)</li><li>Je développe des logiciels libres</li><li>J’adore cuisiner, boire des coups et Nintendo<br></li><li>J’organise les <a href="https://www.meetup.com/fr-FR/Python-AFPY-Lyon/">Meetup Python à Lyon</a></li></ul></section>
+<section><h2>Que va-t-il se passer pendant cet atelier ?<br></h2><ul><li>Pourquoi ne pas utiliser LaTeX, LibreOffice, Adobe InDesign… ?</li><li>Non mais du HTML et du CSS pour faire des PDFs, c’est pas prévu pour ça voyons, c’est pour faire du web.</li><li>Et si on mettait en page un livre de poche ?<br></li></ul></section>
+<section><h2>Il était une fois…<br></h2><p>Une petite entreprise lyonnaise qui générait divers documents. Des factures, des rapports, des livrets de formations, etc.</p><p>Pour générer ces documents, iels ont utilisé différentes solutions : LibreOffice, LaTeX…<br></p></section>
+<section><h2>Mais…</h2><p>Même si ces outils sont très bien, ils ne sont pas adaptés à la génération automatique de documents.</p><p>Plein de petites choses peuvent changer entre deux documents globalement identiques, et ce n’est pas très pratique à gérer avec ces outils.</p><p>Et puis, n’essayez pas de demander à un·e graphist·e de faire du design sur ces outils. Comme toute personne normalement constituée, iels refuseront.<br></p></section>
+<section><h2>C’est alors que…<br></h2><p>L’idée d’utiliser HTML et CSS pour créer des documents PDFs émergea.</p><p>Une preuve de concept plus tard, voilà un stagiaire lancé sur le projet.<br></p></section>
+<section><h2>C’est pas un peu bizarre quand même ?<br></h2><p>On connait bien HTML et CSS pour faire du web, mais en réalité, c’est prévu.<br></p><p>Dès la <a href="https://www.w3.org/TR/WD-CSS2-971104/cover.html">première version de la spécification CSS</a> en 1996, on trouve tout un chapitre dédié aux documents paginés.<br></p></section>
+<section><h2>Bon, c’est quoi WeasyPrint ?<br></h2><p>WeasyPrint est une librairie en Python qui permet de transformer du HTML et CSS en documents PDFs.</p><p>Et c’est nous qui la développons !<br></p></section>
+<section><h2>Ça s’installe comment ?<br></h2><p>WeasyPrint est packagé dans de nombreuses distributions Linux.</p><p>N’hésitez pas à jeter un œil <a href="https://doc.courtbouillon.org/weasyprint/stable/">la documentation</a> si jamais votre distribution favorite ne dispose pas (encore) de WeasyPrint.<br></p></section>
+<section><h2>Et si on imprimait un truc ?</h2><p>Vous pouvez récupérer le dépôt des exemples sur <a href="https://github.com/CourtBouillon/weasyprint-samples">GitHub</a>.<br></p><p style="width: 150%"><code>weasyprint book.html book.pdf</code></p><p style="">C’est pas très beau, il n’y a que le style par défaut de WeasyPrint. On va changer ça !<br></p>
+
+</section>
+<section><h2>Du CSS pour des documents ou pour le web, c’est (presque) pareil ! <br></h2><p>On va pouvoir utiliser les mêmes sélecteurs et les mêmes propriétés.</p><p>Note : tout n’est pas (encore) supporté dans WeasyPrint. Vous pouvez oublier grid pour l’instant.<br></p></section>
+<section><h2>Et si on cachait les images ?<br></h2><p>Dans un livre de poche, il n’y a généralement pas d’images. On va pouvoir les cacher en utilisant <code>display: none</code>.</p><p>Vous pouvez créer une feuille de style qui va servir à définir la mise en page de notre livre.</p><p>Pour que WeasyPrint prenne en compte cette feuille de style, vous pouvez ajouter un <code>link</code> dans le HTML ou utiliser l’option -s en ligne de commande.</p><p><code>weasyprint book.html -s style.css book.pdf</code><br></p></section>
+<section><h2>Mais avec des trucs en plus !<br></h2><p>Il y a des choses spécifiques à un document paginé, comme par exemple… les numéros de pages.</p><p>Et plein d’autres :</p><ul><li>les coupures de pages</li><li>les headers et footers<br></li><li>les marges de pages</li><li>la table des matières</li><li>…<br></li></ul></section>
+<section><h2>À vous de jouer !<br></h2><p>Mettez en page ce livre au format poche.</p><p>N’hésitez pas à faire un petit dessin pour savoir où vous allez ou à vous inspirez du résultat disponible dans le dépôt.<br></p></section>
+<section><h2>Le livre serait bien mieux avec des numéros de pages<br></h2><p>Pour rajouter les numéros de pages, on va se servir des <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@page">règles at-page</a>.</p><p>Elles vont nous permettre déterminer les propriétés des pages comme les marges et le contenu de ces marges (c’est là qu’on va mettre les numéros).</p><p>Nous voulons aussi des compteurs. Les compteurs pour les pages existent de base. Ils s’appellent <code>page</code> (pour la page cours) et <code>pages</code> (pour le nombre total).<br></p></section>
+<section>
+  <h2>Les marges de pages</h2>
+ 
+  <img src="https://www.courtbouillon.org/static/images/00036-margin-boxes.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom: 1em; height:15em">
+  <pre>@page {
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+  }
+}
+</pre>
+
+</section>
+<section><h2>Le livre serait bien mieux si on passait à la page suivante à chaque chapitre<br></h2><p>À certains moments, on voudrait bien que le contenu passe à la page d’après, à d’autres qu’on évite de couper.</p><p>Pour cela, on utilise les propriétés <code>break-before</code>, <code>break-inside</code> et <code>break-after</code>.<br></p><p>La valeur <code>avoid</code> permet d’empêcher la coupure, <code>page</code> permet de la forcer. On peut même choisir si on coupe quand on est sur une page de droite ou de gauche !</p><p>Chaque chapitre est dans une section, on peut donc dire que l’on veut passer à la page suivante avant chacune d’elle.<br></p></section>
+<section><h2>Le livre serait bien mieux avec le titre du chapitre en cours en haut de la page<br></h2><p>Il arrive souvent que l’on veuille avoir un morceau du contenu qui se répète sur chaque page. Dans le cas d’un livre, c’est le cas du chapitre en cours.</p><p>Pour ça on va utiliser les string-set qui permettent de définir une sorte de variable et son contenu <code>string-set: titre content();</code>.</p><p>La valeur se récupère en utilisant <code>string(titre)</code>.<br></p><p>Et on utilise aussi le placement dans les marges pour mettre le titre où l’on veut !<br></p></section>
+<section><h2>Le livre serait bien mieux avec une table des matières<br></h2><p>Vous avez peut-être remarqué cette liste plutôt vide au début du HTML. C’est grâce à elle que l’on va pouvoir faire la table des matières.</p><p>Chaque élément de la liste comporte un lien vers un chapitre. Grâce à ce lien, on peut récupérer le titre du chapitre et sa page.</p><p>Pour le titre, on utilise <code>target-text(attr(href))</code>. Pour le numéro de la page, <code>target-counter(attr(href), page)</code>.</p><p>Oh, et les petits points que l’on trouve dans les tables des matières, il existe une fonction en CSS pour faire ça : <a href="https://www.courtbouillon.org/blog/00035-tips-and-tricks-leader"><code>leader()</code></a>.<br></p></section>
+<section><h2>Alors, il ressemble à quoi votre livre ?<br></h2></section>
+<section><h2>N’hésitez pas à suivre CourtBouillon !<br></h2><ul>
+  <li><a href="https://courtbouillon.org">Le site</a></li>
+  <li><a href="https://www.courtbouillon.org/blog.rss">Le flux RSS</a></li>
+  <li><a href="https://twitter.com/BouillonCourt">Twitter</a></li>
+  <li><a href="https://linkedin.com/company/courtbouillon">LinkedIn</a></li>
+</ul></section>
