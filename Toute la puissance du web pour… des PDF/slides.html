@@ -1,0 +1,352 @@
+<section>
+  <h1>Toute la puissance du web pour… des PDF</h1>
+  <p>Lucie Anglade − DevLille 2025</p>
+</section>
+
+<section>
+  <p>
+    Oui, on va vraiment parler de PDF et de web
+  </p>
+</section>
+
+<section id="whoami">
+  <h2>Qui suis-je ?</h2>
+
+  <img style="float: left; width: 35%; margin-right: 2em; border-radius: 50% 20% / 10% 40%;" src="static/lucie.png"/>
+  <ul style="margin-top: 4em;">
+    <li>Lucie Anglade</li>
+    <li>Ingénieure en informatique 👩🏻‍💻</li>
+    <li>Développe des logiciels libres en Python</li>
+    <li>Présidente de l’AFPy 🐍</li>
+  </ul>
+</section>
+
+<section class="tools">
+  <h2>Les outils « classiques »</h2>
+
+  <div>
+    <figure>
+      <img src="static/software/indesign.svg"/>
+      <figcaption>Adobe InDesign</figcaption>
+    </figure>
+    <figure>
+      <img id="libreoffice" src="static/software/libreoffice.png"/>
+      <img src="static/software/word.png"/>
+      <figcaption>LibreOffice / Word</figcaption>
+    </figure>
+    <figure>
+      <img id="latex" src="static/software/latex.svg"/>
+      <figcaption>LaTeX</figcaption>
+    </figure>
+    <figure>
+      <img src="static/software/firefox.png"/>
+      <img src="static/software/chrome.png"/>
+      <img src="static/software/safari.png"/>
+      <figcaption>Votre navigateur favori</figcaption>
+    </figure>
+  </div>
+
+  <aside class="notes">
+    Plus ou moins pratique pour faire des documents une fois, mais beaucoup moins pratique pour automatiser.
+  </aside>
+</section>
+
+<section>
+  <h2>Les problèmes</h2>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <img src="static/documents/elycoop_table.png"/>
+
+  <aside class="notes">
+    1 : l’entête du tableau qui est coupée
+  </aside>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <img src="static/documents/elycoop_titre_logo_marge.png"/>
+
+  <aside class="notes">
+    2 : le titre en bas de page + le logo dans la marge qui pousse le contenu principal
+  </aside>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <img src="static/documents/toc2.png"/>
+
+  <aside class="notes">
+    TOC2 : la partie est avant la table des matières (bougée après avoir généré la TOC ?)
+  </aside>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <img src="static/documents/owiowi_perte_contenu.png"/>
+
+  <aside class="notes">
+    Owiowi : perte de contenu (navigateur)
+  </aside>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <img src="static/documents/lmh_coupure_cookies.png"/>
+
+  <aside class="notes">
+    Lyon Métropôle Habitat : bannière à cookies qui met le bazar (navigateur)
+  </aside>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <img src="static/documents/mutuelle_logo_marge.png"/>
+
+  <aside class="notes">
+    mutuelle : contenu principal par dessus le contenu de marge
+  </aside>
+</section>
+
+<section>
+  <p>
+    Définir un contenu, le mettre en forme, sur des pages…
+  </p>
+</section>
+
+<section>
+  <h3>Définir son contenu : HTML 🤯</h3>
+</section>
+
+<section>
+  <h3>Le mettre en forme : CSS 🤯</h3>
+</section>
+
+<section>
+  <p>Mais OMG, le web c’est des pages, c’est fait pour faire des documents</p>
+  <p style="visibility: hidden;">Et depuis le début de CSS même !</p>
+</section>
+
+<section>
+  <p>Mais OMG, le web c’est des pages, c’est fait pour faire des documents</p>
+  <p>Et même depuis le début de CSS !</p>
+</section>
+
+
+<section>
+  <h2>Mais nos problèmes d’avant là ?</h2>
+</section>
+
+<section class="code" data-background-color="#14213D55">
+  <h3>Les coupures de page</h3>
+  <div>
+    <pre><code>
+&lt;!-- HTML --&gt;
+&lt;h1&gt;Titre principal&lt;/h1&gt;
+
+&lt;h2&gt;Partie 1&lt;/h2&gt;
+
+&lt;p&gt;
+Lorem ipsum dolor sit amet,
+consectetur adipiscing elit,
+sed do eiusmod tempor…
+&lt;/p&gt;
+  </code></pre>
+  <pre><code>
+/* CSS */
+  </code></pre>
+  </div>
+  <aside class="notes">
+    de base ça coupe pas juste après un titre
+  </aside>
+</section>
+
+<section class="code" data-background-color="#14213D55">
+  <h3>Les tables des matières</h3>
+  <div>
+    <pre><code>
+&lt;!-- HTML --&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;a href=&quot;#title1&quot;&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href=&quot;#title2&quot;&gt;&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;title1&quot;&gt;Titre 1&lt;/h2&gt;
+&lt;h2 id=&quot;title2&quot;&gt;Titre 2&lt;/h2&gt;
+    </code></pre>
+    <pre><code>
+/* CSS */
+a::before {
+  content: target-text(attr(href));
+}
+
+a::after {
+  content: leader(dotted)
+   target-counter(attr(href), page);
+}
+    </code></pre>
+  </div>
+</section>
+
+<section class="code" data-background-color="#14213D55">
+  <h3>Les marges de pages</h3>
+  <div>
+    <pre><code>
+&lt;!-- HTML --&gt;
+
+&lt;img src=path/to/image /&gt;
+
+&lt;p&gt;Du texte&lt;/p&gt;
+&lt;p&gt;Encore du texte&lt;/p&gt;
+    </code></pre>
+    <pre><code>
+/* CSS */
+
+@page {
+  margin: 4cm 2cm 3cm 2cm;
+  @top-left {
+    content: element(image-header);
+  }
+}
+
+img {
+  position: running(image-header);
+}
+    </code></pre>
+  </div>
+</section>
+
+<section>
+  <h3>D’autres trucs cools en CSS</h3>
+
+  <ul>
+    <li>les compteurs de page</li>
+    <li>les pages différentes</li>
+    <li>le contenu dynamique dans les marges</li>
+    <li>les notes de bas de page</li>
+    <li>les traits de coupe</li>
+    <li>la mise en page avec <em>grid</em> et <em>flex</em></li>
+    <li>les bookmarks</li>
+    <li>…</li>
+  </ul>
+</section>
+
+
+<section>
+  <h2>Des jolis trucs faits en HTML/CSS</h2>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <figure>
+    <img src="static/cool/invoice.png"/>
+    <figcaption>Samples de <a href="https://weasyprint.org/">WeasyPrint</a></figcaption>
+  </figure>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <figure>
+    <img src="static/cool/report.png"/>
+    <figcaption>Samples de <a href="https://weasyprint.org/">WeasyPrint</a></figcaption>
+  </figure>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <figure>
+    <img src="static/cool/hachette.png"/>
+    <figcaption><a href="https://www.xml.com/articles/2017/02/20/beyond-xml-making-books-html/">Article</a> de Dave Cramer</a></figcaption>
+  </figure>
+
+  <aside class="notes">
+    Dave Cramer, ancien membre du CSS working group, qui travaille pour Hachette
+    
+    https://www.xml.com/articles/2017/02/20/beyond-xml-making-books-html/
+  </aside>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <figure>
+    <img src="static/cool/louvre.png"/>
+    <figcaption><a href="https://presse.louvre.fr/le-premier-livre-multiformat-du-musee-du-louvre/">Livre multiformat</a> du Musée du Louvre</figcaption>
+  </figure>
+  
+  <aside class="notes">
+    https://presse.louvre.fr/le-premier-livre-multiformat-du-musee-du-louvre/
+  </aside>
+</section>
+
+<section>
+  <p>Et ce qui est cool avec tout ça…</p>
+</section>
+
+<section class="full" data-background-color="#14213D55">
+  <figure>
+    <img src="static/cool/single-source-publishing.jpg"/>
+    <figcaption><a href="https://polylogue.org/les-illusions-de-la-source-unique/">Illustration du Single Source Publishing</a> par Nicolas Taffin</figcaption>
+  </figure>
+
+  <aside class="notes">
+    https://polylogue.org/les-illusions-de-la-source-unique/
+  </aside>
+</section>
+
+
+<section>
+  <h2>Bref, mais les outils du coup ?</h2>
+</section>
+
+<section class="tools">
+  <h3>Différents outils</h3>
+
+  <div>
+    <figure>
+      <img class="large" src="static/software/weasyprint.svg"/>
+      <figcaption><a href="https://weasyprint.org/">WeasyPrint</a></figcaption>
+    </figure>
+    <figure>
+      <img class="large" src="static/software/pagedjs.svg"/>
+      <figcaption><a href="https://pagedjs.org/">Paged.js</a></figcaption>
+    </figure>
+    <figure>
+      <img class="large" src="static/software/vivliostyle.svg"/>
+      <figcaption><a href="https://vivliostyle.org/">Vivliostyle</a></figcaption>
+    </figure>
+    <figure>
+      <img class="large" src="static/software/prince.png"/>
+      <figcaption><a href="https://www.princexml.com/">Prince</a></figcaption>
+    </figure>
+  </div>
+
+  <p style="margin-top: 3em;">
+    Et toujours votre navigateur favori pour des cas simples.
+  </p>
+
+  <aside class="notes">
+    C’est pas toujours opti, parce qu’il est fait pour naviguer et pas imprimer. Mais pour des trucs simples, ça passe.
+
+    Préchage pour ma paroisse tavu. Librairie Python, pratique pour industrialiser et générer en masse. Et c’est libre.
+
+    Polyfill js. Les nouveautés sont rapidement là. plus sympa pour voir au fur et à mesure qu’on construit son document, faire de l’édition, moins pour l’insdustrialisation. Et c’est libre aussi.
+
+    C’est fait par monsieur css Hakon. Très performant, mais c’est pas libre.
+  </aside>
+</section>
+
+<section>
+  <p>Et il y en a plein d’autres !</p>
+
+  <aside class="notes">
+    Outils clasiques pour faire du dev
+    Facile de changer d’outil parce que spécification
+  </aside>
+</section>
+
+
+<section>
+  <h2>Merci, des questions ?</h2>
+
+  <figure id="qrcode" style="text-align: center;">
+    <img style="width: 40%" src="static/qr-code.svg"/>
+    <figcaption>
+      ➡️ <a href="https://www.courtbouillon.org/links/">courtbouillon.org/links</a>
+    </figcaption>
+  </figure>
+</section>
