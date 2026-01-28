@@ -1,0 +1,458 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Outside the Beaten Path of CSS</title>
+
+    <style id="fonts" contenteditable="true">
+      @font-face {
+        font-family: ClarityCity;
+        font-weight: 400;
+        src: local("ClarityCity Regular"), local("ClarityCity-Regular"), url(ClarityCity-Regular.woff2);
+      }
+
+      @font-face {
+        font-family: ClarityCity;
+        font-weight: 700;
+        src: local("ClarityCity Bold"), local("ClarityCity-Bold"), url(ClarityCity-Bold.woff2;
+      }
+
+      @font-face {
+        font-family: ClarityCity;
+        font-style: italic;
+        font-weight: 400;
+        src: local("ClarityCity RegularItalic"), local("ClarityCity-RegularItalic"), url(ClarityCity-RegularItalic.woff2);
+      }
+
+      @font-face {
+        font-family: Inconsolata;
+        src: local("Inconsolata"), url(Inconsolata-Regular.woff2);
+      }
+    </style>
+
+    <style id="variables" contenteditable="true">
+      :root {
+        --main: #e8403a;
+        --text: #333;
+        --background: #f2f2f1;
+
+        --main-shadow: #6001;
+        --text-shadow: #2001;
+
+        --panel-width: 20vw;
+      }
+    </style>
+
+    <style id="common" contenteditable="true">
+      /* Main structure */
+
+      html {
+        background: var(--background);
+        font-family: ClarityCity, sans-serif;
+        font-size: 2vw;
+        line-height: 1.4;
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        counter-reset: page;
+        display: flex;
+        flex-direction: column;
+      }
+      section {
+        align-content: center;
+        box-sizing: border-box;
+        counter-increment: page;
+        height: 100vh;
+        scroll-snap-align: start;
+        padding: 0 15%;
+        position: relative;
+
+        &::after {
+          bottom: 1em;
+          content: counter(page);
+          font-size: 0.5em;
+          line-height: 1;
+          opacity: 0.5;
+          position: absolute;
+          right: 1.5em;
+        }
+      }
+      ::selection {
+        background: var(--main);
+        color: var(--background);
+      }
+      #background {
+        display: block;
+        height: 100vh;
+        position: fixed;
+        top: 30vh;
+        right: 0;
+      }
+
+
+      /* Slides */
+
+      section {
+        color: var(--text);
+
+        a:hover, a:focus {
+          text-decoration-color: var(--main);
+        }
+
+        h1 {
+          bookmark-level: none;
+          color: var(--main);
+          font-size: 3.6em;
+          font-weight: 400;
+          hyphens: none;
+          letter-spacing: -0.03em;
+          line-height: 0.9;
+          margin: 0 0 0.4em 0;
+          text-shadow: 0.02em 0.02em 0.03em var(--main-shadow);
+          text-wrap-style: balance;
+        }
+        h2 {
+          color: var(--main);
+          font-size: 2.1em;
+          font-weight: 400;
+          hyphens: none;
+          letter-spacing: -0.02em;
+          line-height: 1;
+          margin: 0 0 0.5em 0;
+          text-shadow: 0.03em 0.03em 0.05em var(--main-shadow);
+          text-wrap-style: balance;
+        }
+        h3 {
+          font-size: 2.1em;
+          hyphens: none;
+          font-weight: 400;
+          letter-spacing: -0.02em;
+          line-height: 1;
+          margin: 0 0 1em 0;
+          text-shadow: 0.04em 0.04em 0.05em var(--text-shadow);
+          text-wrap-style: balance;
+        }
+        h4 {
+          hyphens: none;
+          font-size: 1em;
+          font-variant: small-caps;
+          font-weight: 400;
+          margin: 0 0 1em 0;
+          text-shadow: 0.04em 0.04em 0.05em var(--text-shadow);
+          text-wrap-style: balance;
+        }
+
+        ul {
+          padding-left: 1em;
+        }
+
+        img {
+          float: right;
+          image-rendering: crisp-edges;
+          margin: 1em;
+          width: 20%;
+        }
+      }
+
+
+      /* Panel */
+
+      aside {
+        font-size: 0.5em;
+        opacity: 0.2;
+        padding-right: 0.5em;
+        position: fixed;
+        right: 0;
+        transition: opacity 0.25s;
+        top: 0;
+        z-index: 1;
+
+        &:hover, &:focus {
+          opacity: 1;
+        }
+
+        label {
+          cursor: pointer;
+          display: block;
+          font-size: 0;
+          padding-top: 0.25rem;
+
+          input {
+            opacity: 0;
+          }
+
+          &::after {
+            font-size: 0.8rem;
+          }
+
+          &:has([value=variables])::after {
+            content: '🎛️';
+          }
+          &:has([value=common])::after {
+            content: '🖌️';
+          }
+          &:has([value=print])::after {
+            content: '🖨️';
+          }
+          &:has([value=thermal])::after {
+            content: '🌡️';
+          }
+          &:has([value=close])::after {
+            content: '❌';
+          }
+        }
+
+        &:has([value=close]) {
+          z-index: 3;
+
+          &:has(:checked) {
+            display: none;
+          }
+        }
+      }
+      style {
+        background: #000d;
+        bottom: 0;
+        color: white;
+        display: block;
+        font-size: 0.5em;
+        overflow: auto;
+        position: fixed;
+        top: 0;
+        transition: right 0.5s ease-in-out;
+        right: calc(-1 * var(--panel-width));
+        width: var(--panel-width);
+        white-space: pre;
+        z-index: 2;
+      }
+      html:has([value=variables]:checked) #variables,
+      html:has([value=common]:checked) #common,
+      html:has([value=print]:checked) #print,
+      html:has([value=thermal]:checked) #thermal {
+        right: 0;
+      }
+
+
+      /* Specific classes */
+
+      [contenteditable] {
+        outline: 0;
+      }
+      .emojis {
+        font-size: 4em;
+        margin: 0;
+      }
+      .remark {
+        font-size: 0.7em;
+        opacity: 0.8;
+      }
+      .todo {
+        background: red;
+        border-radius: 0.25em;
+        box-shadow: 0 0 0.1em 0.1em var(--text-shadow);
+        color: white;
+        font-size: 0.7em;
+        padding: 0.25em;
+        margin-right: 0.5ch;
+        vertical-align: 15%;
+      }
+
+      head {
+        display: block;
+      }
+    </style>
+    <style id="print" media="print" contenteditable="true">
+      @page {
+        margin: 2cm;
+        size: A5;
+
+        @bottom-center {
+          content: counter(page) ' / ' counter(pages);
+        }
+      }
+      @page:first {
+        @bottom-center {
+          content: none;
+        }
+      }
+
+      html {
+        background: none;
+        font-size: 12pt;
+      }
+
+      aside, style, #background {
+        display: none;
+      }
+
+      main {
+        display: block;
+      }
+
+      section {
+        padding: 0;
+
+        &:first-of-type {
+          break-after: page;
+        }
+
+        h1 {
+          margin: 3.5em 1em 0 0;
+        }
+        h2 {
+          margin-top: 2em;
+        }
+      }
+    </style>
+    <style id="thermal" media="thermal" contenteditable="true">
+      @page {
+        margin: 0;
+        size: 210mm 140mm;
+      }
+
+      :root {
+        --main: black;
+        --text: black;
+      }
+
+      html {
+        background: none;
+        font-size: 8pt;
+      }
+
+      aside, style, img, #background {
+        display: none;
+      }
+
+      main {
+        display: grid;
+        grid: repeat(2, 70mm) / repeat(5, 42mm);
+      }
+
+      section {
+        border: 0.1mm dashed #aaa;
+        padding: 1em;
+
+        &::after {
+          bottom: 0.25em;
+          font-size: 8pt;
+          right: 0.25em;
+        }
+      }
+
+      section:nth-of-type(n+6) {
+        transform: scale(-1);
+      }
+      section:nth-of-type(6) {
+        order: 10;
+      }
+      section:nth-of-type(7) {
+        order: 9;
+      }
+      section:nth-of-type(8) {
+        order: 8;
+      }
+      section:nth-of-type(9) {
+        order: 7;
+      }
+      section:nth-of-type(10) {
+        order: 6;
+      }
+    </style>
+  </head>
+
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="15 0 70 140" id="background">
+      <defs><style>path {fill: var(--main); opacity: 0.2}</style></defs>
+      <path d="M47.44,76.75A14.37,14.37,0,1,0,33.07,91.12,14.38,14.38,0,0,0,47.44,76.75ZM33.07,86.48a9.73,9.73,0,1,1,9.73-9.73A9.74,9.74,0,0,1,33.07,86.48Z"/>
+      <path d="M56.79,98.92a18.75,18.75,0,1,0,18.74,18.75A18.76,18.76,0,0,0,56.79,98.92Zm0,32.86A14.11,14.11,0,1,1,70.9,117.67,14.13,14.13,0,0,1,56.79,131.78Z"/>
+      <path d="M45.34,20a10,10,0,1,0-10-10A10,10,0,0,0,45.34,20Zm0-15.33A5.35,5.35,0,1,1,40,10,5.35,5.35,0,0,1,45.34,4.64Z"/>
+      <path d="M50.05,41.55A14.36,14.36,0,1,0,64.41,27.19,14.38,14.38,0,0,0,50.05,41.55Zm14.36-9.72a9.73,9.73,0,1,1-9.73,9.72A9.74,9.74,0,0,1,64.41,31.83Z"/>
+    </svg>
+
+    <aside>
+      <label>
+        <input type="radio" name="panel" value="variables"> Variables
+      </label>
+      <label>
+        <input type="radio" name="panel" value="common"> Common
+      </label>
+      <label>
+        <input type="radio" name="panel" value="print"> Print
+      </label>
+      <label>
+        <input type="radio" name="panel" value="thermal"> Thermal
+      </label>
+    </aside>
+    <aside>
+      <label>
+        <input type="radio" name="panel" value="close" checked> Close
+      </label>
+    </aside>
+
+    <main>
+      <section>
+        <h1>Outside the Beaten Path of CSS</h1>
+        <p>Lucie Anglade &amp; Guillaume Ayoub — FOSDEM 2026</p>
+      </section>
+
+      <section>
+        <h2>Bonjour !</h2>
+        <p>We’re Lucie &amp; Guillaume, we work on WeasyPrint.</p>
+        <p contenteditable="true"><span class="todo">TODO</span> Write something interesting about us.</p>
+        <p contenteditable="true"><span class="todo">TODO</span> And write something interesting about WeasyPrint.</p>
+      </section>
+
+      <section>
+        <h2>CSS is Awesome</h2>
+        <p contenteditable="true"><span class="todo">TODO</span> Everybody needs JavaScript.</p>
+      </section>
+
+      <section>
+        <h2>Web Browsers are Awesome</h2>
+        <p contenteditable="true"><span class="todo">TODO</span> Release their superpowers.</p>
+      </section>
+
+      <section>
+        <h2>Web Tooling is Awesome</h2>
+        <p contenteditable="true"><span class="todo">TODO</span> So many great tools deal with web technologies.</p>
+      </section>
+
+      <section>
+        <h2>Standards are Awesome</h2>
+        <p contenteditable="true"><span class="todo">TODO</span> What if, in 1998, CSS 2 had been designed for print, TVs, projectors, handheld devices, braille screens, speech synthesizers…</p>
+      </section>
+
+      <section>
+        <h2>Printed Documents are Awesome</h2>
+        <p contenteditable="true"><span class="todo">TODO</span> Ask everybody what’s in a book.</p>
+      </section>
+
+      <section>
+        <h2>HTML+CSS for Print is Awesome</h2>
+        <p>We can print these slides.</p>
+      </section>
+
+      <section>
+        <h2>Printing HTML+CSS is Awesome</h2>
+        <p>We can <em>really</em> print these slides… now!</p>
+      </section>
+
+      <section>
+        <h2 contenteditable="true">The End is Awesome?</h2>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfAQMAAAAlYIR6AAAAAXNSR0IB2cksfwAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAZQTFRFAAAA////pdmf3QAAAKZJREFUCNcBmwBk/wD////+AIDlQgIAvsQ++gCigaqKAKKq1ooAoofCigC+nxr6AICqqgIA/5L//gCg0xYOAKvMgDoA4PAZ/gCd9epWAJaey84AhcuAugD6L1pOAI1+ojYA5MvXTgCX2IIqALxoH24Atw13NgCyNtgiAP+bu4IAgM9CjgC+piO2AKKP2C4AoryvQgCiixYGAL7UsVYAgJXEDgD////++HpJqM20ZYEAAAAASUVORK5CYII=">
+        <p>In a nutshell:</p>
+        <ul>
+          <li>CSS is full of <strong>unknown superpowers,</strong></li>
+          <li><strong>interoperability</strong> gives great possibilities to hack web technologies,</li>
+          <li>many tools can bring you <strong>outside the beaten path of the Web.</strong></li>
+        </ul>
+        <p>Thank you!</p>
+      </section>
+    </main>
+  </body>
+</html>
