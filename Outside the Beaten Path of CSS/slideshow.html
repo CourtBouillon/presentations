@@ -43,7 +43,7 @@
         --main-shadow: #6001;
         --text-shadow: #2001;
 
-        --panel-width: 20vw;
+        --panel-width: 30vw;
       }
     </style>
 
@@ -166,7 +166,6 @@
       /* Panel */
 
       aside {
-        font-size: 0.5em;
         opacity: 0.2;
         padding-right: 0.5em;
         position: fixed;
@@ -223,7 +222,6 @@
         bottom: 0;
         color: white;
         display: block;
-        font-size: 0.5em;
         overflow: auto;
         position: fixed;
         top: 0;
@@ -289,7 +287,7 @@
         font-size: 12pt;
       }
 
-      aside, style, #background {
+      aside, style, #background, section::after {
         display: none;
       }
 
@@ -342,9 +340,9 @@
         padding: 1em;
 
         &::after {
-          bottom: 0.25em;
+          bottom: 0.75em;
           font-size: 8pt;
-          right: 0.25em;
+          right: 0.75em;
         }
       }
 
