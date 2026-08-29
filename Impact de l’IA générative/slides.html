@@ -1,0 +1,579 @@
+<section>
+  <h1>L’impact de l’IA générative sur les projets libres</h1>
+  <h2>— du point de vue d’une mainteneuse</h2>
+  <p>Lucie Anglade, aka grewn0uille − PyCon Togo 2026</p>
+
+  <aside class="notes">
+Merci Python Togo <3
+  </aside>
+</section>
+
+<section>
+  <h2>Pourquoi ce sujet ?</h2>
+</section>
+
+<section id="whoami">
+  <h3>Qui suis-je ?</h3>
+
+  <img style="float: left; width: 35%; margin-right: 2em; border-radius: 50% 20% / 10% 40%;" src="static/lucie_.jpg"/>
+  <ul style="margin-top: 4em;">
+    <li>Lucie Anglade</li>
+    <li>Ingénieure en informatique 👩🏻‍💻</li>
+    <li>Développe des logiciels libres en Python</li>
+    <li>Organise des meetups Python à Lyon</li>
+    <li>Ancienne présidente de l’<a href="https://www.afpy.org/">AFPy</a> 🐍</li>
+  </ul>
+</section>
+
+<section>
+  <p>Bref… Python ♥️</p>
+
+  <p>Mais le code, ça m’intéresse pas.</p>
+
+  <aside class="notes">
+    Le code c’est pratique, outil cool.
+
+    Résoudre les problèmes dans la tête + organiser des évènements
+  </aside>
+</section>
+
+<section>
+  <h3>L’idée de base</h3>
+
+  <p>
+    Parler de la communauté, parce que la communauté c’est grave cool.
+  </p>
+  <p>
+    Mais…
+  </p>
+  <p>
+    Ces temps-ci, l’IA générative m’impacte plus que la communauté.
+  </p>
+
+  <aside class="notes">
+Pas parce que utilisé, expliquer augmentation de la productivité, mais alala la gestion du temps…
+  </aside>
+</section>
+
+<section>
+  <h3>Ça m’impacte, mais</h3>
+
+  <p>
+    Je n’utilise pas d’outils d’IA générative.
+  </p>
+  <p>
+    Mais les gens qui contribuent sur nos logiciels, oui.
+  </p>
+</section>
+
+<section>
+  <p>
+    Et il faut bien s’en occuper.
+  </p>
+</section>
+
+<section>
+  <h2>C’est quoi un logiciel libre ?</h2>
+
+  <p>Quatre libertés :</p>
+  <ul>
+    <li>utiliser,</li>
+    <li>étudier,</li>
+    <li>redistribuer,</li>
+    <li>modifier.</li>
+  </ul>
+</section>
+
+<section>
+  <p>
+    Toutes et tous, vous avez déjà participé à un logiciel libre.
+  </p>
+</section>
+
+<section>
+  <p>
+    Les contributions participent à faire vivre un logiciel libre.
+  </p>
+  <p>
+    Mais avec l’IA, ça devient quoi ? 🤔
+  </p>
+</section>
+
+<section>
+  <h2>Ce dont on ne va pas parler</h2>
+
+  <ul>
+    <li>impact écologique,</li>
+    <li>impact social,</li>
+    <li>impact sociétal,</li>
+    <li>aspect financier et rentabilité,</li>
+    <li>quel est le meilleur modèle.</li>
+  </ul>
+
+  <p class="resources">
+    <a href="https://blog.whoz.me/non-classe/resume-sur-lia/">Résumé sur l’IA</a> — Guillaume, aka burgervege sur Mastodon
+  </p>
+</section>
+
+<section>
+  <h2>Ce dont on va parler</h2>
+
+  <p>
+    L’impact sur des personnes qui maintiennent des logiciels libres,
+    qui n’utilisent pas (et ne le souhaitent pas) l’IA.
+  </p>
+
+  <aside class="notes">
+    IA = IA générative pour la conf
+  </aside>
+</section>
+
+<section>
+  <h2>Un peu de contexte</h2>
+  <p>
+    C’est qui "on" et c’est quoi ces logiciels ?
+  </p>
+</section>
+
+<section>
+  <h3>Le "on"</h3>
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <figure style="width: 30%">
+      <img style="border-radius: 50% 20% / 10% 40%; width: 100%" src="static/guillaume.jpg"/>
+      <figcaption>Guillaume Ayoub (liZe)</figcaption>
+    </figure>
+    <p>+</p>
+    <figure style="width: 30%;">
+      <img style="border-radius: 50% 20% / 10% 40%; width: 100%" src="static/lucie.jpg"/>
+      <figcaption>Lucie Anglade (grewn0uille)</figcaption>
+    </figure>
+    <p>=</p>
+    <img style="border-radius: 50% 20% / 10% 40%;" src="static/courtbouillon.png"/>
+  </div>
+</section>
+
+<section>
+  <h3>Les logiciels</h3>
+  
+  <img style="width: 15em; margin-bottom: 1em" src="static/weasyprint.svg">
+  <p>Une bibliothèque Python qui génère des PDF à partir de HTML et CSS.</p>
+
+  <p>Et ses dépendances :</p>
+  <ul>
+    <li>tinycss2</li>
+    <li>cssselect2</li>
+    <li>Pyphen</li>
+    <li>pydyf</li>
+    <li>webencodings</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Un peu d’historique 🦫</h3>
+
+  <p>
+    Création de WeasyPrint en 2011, en tant que projet d’entreprise.
+  </p>
+  <p>
+    Libre dès le début.
+  </p>
+  <p>
+    Création de CourtBouillon en 2020, avec pour but de vivre du logiciel libre.
+  </p>
+</section>
+
+<section>
+  <p>
+    Aujourd’hui, WeasyPrint c’est 9515 étoiles et plus de 39 millions de téléchargements par mois 🎉
+  </p>
+</section>
+
+<section>
+  <h3>S’occuper d’un logiciel libre, ça veut dire quoi ?</h3>
+
+  <ul>
+    <li>corriger des bugs</li>
+    <li>ajouter des fonctionnalités</li>
+    <li>lire des spécifications</li>
+    <li>faire des releases</li>
+    <li>écrire de la documentation</li>
+    <li>faire du contenu</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Et pour les contributions ?</h3>
+
+  <ul>
+    <li>suivre des tickets</li>
+    <li>répondre aux gens</li>
+    <li>suivre les pull requests (PRs)</li>
+    <li>comprendre les PRs</li>
+    <li>faire des retours sur les PRs</li>
+    <li>gérer les rapports de sécurité</li>
+  </ul>
+</section>
+
+<section>
+  <p>
+    Bref, beaucoup de choses, et beaucoup ne sont pas du code.
+  </p>
+</section>
+
+<section>
+  <h3>Depuis quelques temps…</h3>
+
+  <p>
+    Une impression de plus de PRs, de code de moins bonne qualité, de
+    plus d’échanges à base de "You’re right, I’m sorry", de plus de
+    rapports de sécurité peu pertinents.
+  </p>
+</section>
+
+<section>
+  <h2>Des statistiques 📊</h2>
+
+  <p>
+    Les statistiques sont faites uniquement sur WeasyPrint, avec des données arrêtées le 20/08/2026.
+  </p>
+</section>
+
+<section>
+  <h3>Les rapports de sécurité</h3>
+
+  <ul>
+    <li>De 2011 à 2025 : 3 reçus / 1 validé</li>
+    <li>En 2026 : 17 reçus / 4 validés</li>
+  </ul>
+
+  <aside class="notes">
+Habile comparaison
+  </aside>
+</section>
+
+<section>
+  <h3>Les rapports de sécurité</h3>
+
+  <ul>
+    <li>De 2011 à 2025 : 3 reçus / 1 validé. 0.2 rapport reçu / mois</li>
+    <li>En 2026 : 17 reçus / 4 validés. 2.12 rapport reçu / mois</li>
+  </ul>
+
+  <p>
+    > Une <strong>augmentation de 960%</strong> en 8 mois.
+  </p>
+
+  <aside class="notes">
+    Augmentation du nombre de rapports reçus / mois.
+
+    Temps pris au lieu de rajouter une feature par ex.
+  </aside>
+</section>
+
+<section>
+  <p>
+    Bref, ça n’aide pas le projet.
+  </p>
+</section>
+
+<section>
+  <h3>Les tickets</h3>
+
+  <embed style="width:80%" src="static/graphs/issues_total_maintainers_not_maintainers.svg">
+</section>
+
+<section>
+  <h3>Les tickets</h3>
+
+  <ul>
+    <li>le nombre est stable</li>
+    <li>pas évident de faire des statistiques sur la longueur</li>
+    <li>échanges compliqués avec le compte en face</li>
+  </ul>
+
+  <aside class="notes">
+    Ne fait pas les tests demandés, difficile d’identifier la source du problème.
+
+    Pas non plus de tests de corrections, on suppose c’est ok.
+  </aside>
+</section>
+
+<section>
+  <p>
+    Bref, ça n’aide pas le projet.
+  </p>
+</section>
+
+<section>
+  <h3>Les pull requests</h3>
+
+  <ul>
+    <li>En 2025 : 95 pull requests ouvertes</li>
+    <li>En 2026 : 124 pull requests ouvertes</li>
+  </ul>
+
+  <aside class="notes">
+externe + interne
+  </aside>
+</section>
+
+<section>
+  <h3>Les pull requests</h3>
+
+  <embed style="width:80%" src="static/graphs/pulls_total_maintainers_not_maintainers.svg">  
+</section>
+
+<section>
+  <h3>Les pull requests</h3>
+
+  <ul>
+    <li>En 2025 : 40 PRs externes / 42% de toutes les PRs</li>
+    <li>En 2026 : 78 PRs externes / 63% de toutes les PRs</li>
+  </ul>
+  <p>
+    > Une <strong>augmentation de 95%</strong>.
+  </p>
+
+  <aside class="notes">
+Augmentation des PRs externes
+  </aside>
+</section>
+
+<section>
+  <h3>Les pull requests</h3>
+
+  <ul>
+    <li>En 2025 : 40 PRs externes / 42% de toutes les PRs</li>
+    <li>En 2026 : 78 PRs externes / 63% de toutes les PRs</li>
+  </ul>
+  <p>
+    > Une <strong>augmentation de 95%</strong>.
+  </p>
+  <p>
+    "Fun" fact, 22 des PRs ont été ouvertes par la même personne, en
+    24h, en assurant qu’il y avait du "real engineering work".
+  </p>
+</section>
+
+<section>
+  <h3>Les pull requests</h3>
+  
+  <embed style="width:80%" src="static/graphs/pulls_total.svg">
+
+  <aside class="notes">
+    externe + interne
+  </aside>
+</section>
+
+<section>
+  <h3>Les pull requests</h3>
+
+  <ul>
+    <li>En 2025 : 40 PRs externes / 14 PRs refusées</li>
+    <li>En 2026 : 78 PRs externes / 45 PRs refusées</li>
+  </ul>
+  <p>
+    > Une <strong>augmentation de 221%</strong>.
+  </p>
+
+  <aside class="notes">
+Augmentation du nombre de PRs refusées
+  </aside>
+</section>
+
+<section>
+  <p>
+    Bref, ça n’aide pas le projet.
+  </p>
+</section>
+
+<section>
+  <h2>Le temps</h2>
+</section>
+
+<section>
+  <h3>Ça prend du temps</h3>
+
+  <ul>
+    <li>relire</li>
+    <li>comprendre</li>
+    <li>vérifier</li>
+    <li>poser des questions</li>
+    <li>chercher</li>
+  </ul>
+</section>
+
+<section>
+  <p>
+    En juillet, 45 PRs ont été traitées.
+  </p>
+
+  <aside class="notes">
+C’est plus que toutes les PRs externes reçues en 2025.
+  </aside>
+</section>
+
+<section>
+  <h3>Ce qui n’a pas augmenté ?</h3>
+</section>
+
+<section>
+  <h3>Ce qui n’a pas augmenté ?</h3>
+
+  <p>
+    La durée d’une journée.
+  </p>
+</section>
+
+<section>
+  <h2>IADD</h2>
+</section>
+
+<section>
+  <h3>C’est quoi ?</h3>
+
+  <p>
+    On traite des contributions amenées par <strong>des comptes qui ne comprennent pas ce qu’ils font</strong>.
+  </p>
+  <p>
+    <strong>On ne choisit pas les sujets</strong> sur lesquels on travaille.
+  </p>
+  <p>
+    <strong>On ne choisit pas d’utiliser l’IA, on nous l’impose, sans notre consentement.</strong>
+  </p>
+</section>
+
+<section>
+  <h3>Quels sont les effets ?</h3>
+
+  <p>
+    La tristesse et la démotivation. Le fun disparait.
+  </p>
+
+  <aside class="notes">
+pour quoi ? pour qui ? avec qui ?
+  </aside>
+</section>
+
+<section>
+  <p>
+    Et si le fun disparait, le projet meurt.
+  </p>
+
+  <ul class="resources">
+    <li><a href="https://fosdem.org/2026/schedule/event/B7YKQ7-oss-in-spite-of-ai/">OSS in spite of AI</a> — Daniel Stenberg</li>
+    <li><a href="https://daniel.haxx.se/blog/2026/05/26/the-pressure/">The pressure</a> — Daniel Stenberg</li>
+    <li><a href="https://mikemcquaid.com/open-source-must-be-fun-or-it-will-die/">Open Source must be fun or it will die</a> — Mike McQuaid</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Faut-il arrêter les contributions ?</h2>
+</section>
+
+<section>
+  <p>
+    Non.
+  </p>
+
+  <aside class="notes">
+idée de fermer les prs quand même
+  </aside>
+</section>
+
+<section>
+  <h3>Côté projets libres</h3>
+  <ul>
+    <li>Interdiction des contributions IA</li>
+    <li>Demande de transparence</li>
+    <li>Guides de contributions pour IA</li>
+    <li>Guides de contributions pour humains</li>
+  </ul>
+
+  <ul class="resources">
+    <li><a href="https://gitlab.com/castedo/aidoption">AIdoption</a> — Castedo Ellerman</li>
+    <li><a href="https://www.youtube.com/watch?v=lDxaIKAUBoc">Defending Open Source from "AI" Slop: A Maintainer's Practical Guide</a> — Sviatoslav Sydorenko</li>
+  </ul>
+
+  <aside class="notes">
+nous : guide de contribution + limite pr
+  </aside>
+</section>
+
+<section>
+  <h3>Côté contributeurices</h3>
+  <p>
+    Contribuez, mais respectueusement.
+  </p>
+</section>
+
+<section>
+  <h2>Mais comment alors ?</h2>
+</section>
+
+<section>
+  <h3>Petit guide de la contribution</h3>
+
+  <ul>
+    <li>Regardez si il y a un guide de contributions</li>
+    <li>Si il y a un guide, suivez ces règles</li>
+    <li>Si vous n’êtes pas d’accord avec ces règles, partez</li>
+    <li>Ne donnez pas de "hints" que vous ne comprennez pas</li>
+    <li>Donnez des vrais exemples qui reproduisent votre vrai problème</li>
+  </ul>
+</section>
+
+<section>
+  <ul>
+    <li>N’ayez pas que votre CV en objectif</li>
+    <li>Soyez-là pour aider le logiciel, comme lui vous aide</li>
+  </ul>
+</section>
+
+<section>
+  <p>Faites vous-même. Vous apprendrez plus et vous serez plus fièr·es</p>
+</section>
+
+<section>
+  <p>
+    N’oubliez pas que derrière un logiciel libre, il y a des vraies gens.
+  </p>
+
+  <aside class="notes">
+    souvent solo, temps libre, pas payé
+    <br>
+    pas couper l’envie
+  </aside>
+</section>
+
+<section>
+  <h2>Conclusion</h2>
+</section>
+
+<section>
+  <h3>La communauté</h3>
+
+  <p>
+    Échanger, apprendre, grandir. Techniquement et humainement 🌱
+  </p>
+
+  <aside class="notes">
+    participer = prendre part à une commu
+    <br>
+    la commu nourrit tout le monde
+    <br>
+    une communauté, c’est des gens
+  </aside>
+</section>
+
+<section>
+  <h2>Merci, des questions ?</h2>
+
+  <figure id="qrcode" style="text-align: center">
+    <img style="width: 40%" src="static/qr-code.svg"/>
+    <figcaption>
+      ➡️ <a href="https://www.courtbouillon.org/links/">courtbouillon.org/links</a>
+    </figcaption>
+  </figure>
+</section>
